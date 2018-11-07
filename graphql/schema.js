@@ -28,7 +28,8 @@ type Query {
     getAllCourses: [Course],
     getCurrentUser: User,
     getCourse(_id: ID!): Course,
-    searchCourses(searchTerm: String) : [Course]
+    searchCourses(searchTerm: String) : [Course],
+    getUserCourses(username: String!) : [Course]
 }
 
 type Mutation {

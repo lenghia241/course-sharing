@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import { ADD_COURSE, GET_ALL_COURSES } from "../../queries";
 import Error from "../Error";
+import withAuth from "../withAuth";
 
 const initialState = {
   name: "",
@@ -139,4 +140,6 @@ export class AddCourse extends Component {
   }
 }
 
-export default withRouter(AddCourse);
+export default withAuth(session => session && session.getCurrentUser)(
+  withRouter(AddCourse)
+);

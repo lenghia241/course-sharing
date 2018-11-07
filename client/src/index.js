@@ -54,7 +54,7 @@ const Root = ({ refetch, session }) => (
         path="/addcourse"
         render={() => <AddCourse session={session} refetch={refetch} />}
       />
-      <Route path="/profile" render={() => <Profile />} />
+      <Route path="/profile" render={() => <Profile session={session} />} />
       <Route path="/course/:_id" render={() => <CoursePage />} />
       <Redirect to="/" />
     </Switch>

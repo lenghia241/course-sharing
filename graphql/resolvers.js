@@ -28,6 +28,12 @@ exports.resolvers = {
       const course = await Course.findOne({ _id });
       return course;
     },
+    getUserCourses: async (root, { username }, { Course }) => {
+      const course = await Course.find({ username: username }).sort({
+        createdDate: "desc"
+      });
+      return course;
+    },
     searchCourses: async (root, { searchTerm }, { Course }) => {
       if (searchTerm) {
         const searchCourses = await Course.find(
@@ -50,6 +56,7 @@ exports.resolvers = {
       }
     }
   },
+
   Mutation: {
     addCourse: async (
       roots,
