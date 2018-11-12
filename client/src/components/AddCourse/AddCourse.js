@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
-import { ADD_COURSE, GET_ALL_COURSES } from "../../queries";
+import { ADD_COURSE, GET_ALL_COURSES, GET_USER_COURSES } from "../../queries";
 import Error from "../Error";
 import withAuth from "../withAuth";
 
@@ -64,6 +64,12 @@ export class AddCourse extends Component {
         mutation={ADD_COURSE}
         variables={{ name, category, description, instructions, username }}
         update={this.updateCache}
+        refetchQueries={() => [
+          {
+            query: GET_USER_COURSES,
+            variables: { username }
+          }
+        ]}
       >
         {(addCourse, { data, loading, error }) => {
           return (

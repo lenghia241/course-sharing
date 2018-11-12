@@ -95,6 +95,25 @@ exports.resolvers = {
         throw new Error("Invalid password");
       }
       return { token: createToken(user, process.env.SECRET, "1hr") };
+    },
+    deleteUserCourse: async (root, { _id }, { Course }) => {
+      const course = Course.findOneAndRemove({ _id });
+      return course;
+    },
+    likeCourse: async (root, { _id, username }, { Course, User }) => {
+      const course = await Course.findOneAndUpdate(
+        { _id },
+        { $inc: { likes: 1 } }
+      );
+      const user = await User.findOneAndUpdate(
+        { username },
+        {
+          $addToSet: {
+            favourites: _id
+          }
+        }
+      );
+      return course;
     }
   }
 };

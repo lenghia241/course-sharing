@@ -67,6 +67,24 @@ export const ADD_COURSE = gql`
     }
   }
 `;
+
+export const DELETE_USER_COURSE = gql`
+  mutation($id: ID!) {
+    deleteUserCourse(_id: $id) {
+      _id
+    }
+  }
+`;
+
+export const LIKE_COURSE = gql`
+  mutation($_id: ID!, $username: String!) {
+    likeCourse(_id: $_id, username: $username) {
+      _id
+      likes
+    }
+  }
+`;
+
 // User queries
 export const GET_CURRENT_USER = gql`
   query {

@@ -48,7 +48,14 @@ type Mutation {
     signinUser(
         username: String!,
         password: String!
-        ): Token
+        ): Token,
+    deleteUserCourse(
+        _id: ID!
+        ): Course,
+    likeCourse(
+       _id: ID!, 
+       username: String!
+        ): Course
     },
    
 `;
