@@ -8,11 +8,6 @@ function NavBar({ session }) {
       <div className="container ">
         {session && session.getCurrentUser ? <NavbarAuth /> : <NavbarUnauth />}
         <br />
-        {session && session.getCurrentUser ? (
-          <h3>
-            Welcome, <strong>{session.getCurrentUser.username}</strong>
-          </h3>
-        ) : null}
       </div>
     </Fragment>
   );
@@ -20,7 +15,7 @@ function NavBar({ session }) {
 
 const NavbarAuth = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <NavLink className="navbar-brand" to="/">
         Course Sharing
       </NavLink>
@@ -67,7 +62,7 @@ const NavbarAuth = () => {
 
 const NavbarUnauth = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <NavLink className="navbar-brand" to="/">
         Course Sharing
       </NavLink>

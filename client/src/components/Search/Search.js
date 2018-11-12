@@ -45,20 +45,32 @@ export class Search extends Component {
                   <span className="input-group-text">SEARCH</span>
                 </div>
               </div>
-              {searchResults.map(item => (
-                <div
-                  className="container border border-primary mb-3"
-                  key={item._id}
-                >
-                  <Link to={`/course/${item._id}`}>
-                    <h4>{item.name}</h4>
-                  </Link>
-                  <p>
-                    <i className="material-icons">thumb_up</i>: &nbsp;{" "}
-                    {item.likes}
-                  </p>
-                </div>
-              ))}
+              <ul className="list-unstyled">
+                {searchResults.map(item => (
+                  <li className="media mb-5 border-bottom" key={item._id}>
+                    <img
+                      className="mr-3"
+                      src={item.imageUrl}
+                      style={{ width: "12rem" }}
+                      alt="Search Course"
+                    />
+                    <div className="media-body">
+                      <Link to={`/course/${item._id}`}>
+                        <h5 className="mt-0 mb-1">{item.name}</h5>
+                      </Link>
+                      <p>
+                        <i className="material-icons">thumb_up</i> &nbsp;{" "}
+                        {item.likes}
+                      </p>
+                      <p>
+                        <span className="badge badge-primary">
+                          {item.category}
+                        </span>
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
           );
         }}

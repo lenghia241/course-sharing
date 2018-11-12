@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import UserCourses from "./UserCourses";
-import withAuth from '../withAuth'
+import withAuth from "../withAuth";
 
 function Profile({ session: { getCurrentUser } }) {
   const formatDate = date => {
@@ -12,6 +12,9 @@ function Profile({ session: { getCurrentUser } }) {
 
   return (
     <div className="container">
+      <h3>
+        Welcome, <strong>{getCurrentUser.username}</strong>
+      </h3>
       <h3>User profile</h3>
       <p>Email: {getCurrentUser.email}</p>
       <p>Username: {getCurrentUser.username}</p>
@@ -31,4 +34,4 @@ function Profile({ session: { getCurrentUser } }) {
   );
 }
 
-export default withAuth(session=>session && session.getCurrentUser)(Profile);
+export default withAuth(session => session && session.getCurrentUser)(Profile);

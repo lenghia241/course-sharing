@@ -98,6 +98,7 @@ export class LikeCourse extends Component {
                         onClick={() =>
                           this.handleClick(likeCourse, unlikeCourse)
                         }
+                        className="btn btn-raised btn-info"
                       >
                         {liked ? "Unlike" : "Like"}
                       </button>

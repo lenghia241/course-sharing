@@ -11,15 +11,29 @@ function CoursePage({ match }) {
       {({ data, loading, error }) => {
         if (loading) return <div>Loading</div>;
         if (error) return <div>Error</div>;
+        const {
+          name,
+          category,
+          description,
+          instructions,
+          likes,
+          username,
+          imageUrl
+        } = data.getCourse;
         return (
           <div className="container">
-            <h2>{data.getCourse.name}</h2>
-            <p>Category: {data.getCourse.category}</p>
-            <p>Description: {data.getCourse.description}</p>
-            <p>Instructor: {data.getCourse.instructions}</p>
-            <p>Likes: {data.getCourse.likes}</p>
-            <p>Shared by: {data.getCourse.username}</p>
-            <LikeCourse _id={_id} />
+            <div className="card">
+              <img className="card-img-top" src={imageUrl} alt="Course" />
+              <div className="card-body">
+                <h5 className="card-title">{name}</h5>
+                <p className="card-text">Category: {category}</p>
+                <p className="card-text">Description: {description}</p>
+                <p className="card-text">Instructor: {instructions}</p>
+                <p className="card-text">Likes: {likes}</p>
+                <p className="card-text">Shared by: {username}</p>
+                <LikeCourse _id={_id} />
+              </div>
+            </div>
           </div>
         );
       }}

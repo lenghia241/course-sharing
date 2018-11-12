@@ -7,6 +7,7 @@ export const GET_ALL_COURSES = gql`
     getAllCourses {
       _id
       name
+      imageUrl
       description
       instructions
       category
@@ -31,6 +32,8 @@ export const SEARCH_COURSES = gql`
       _id
       name
       likes
+      category
+      imageUrl
     }
   }
 `;
@@ -44,6 +47,7 @@ export const ADD_COURSE = gql`
     $instructions: String!
     $category: String!
     $username: String
+    $imageUrl: String!
   ) {
     addCourse(
       name: $name
@@ -51,6 +55,7 @@ export const ADD_COURSE = gql`
       instructions: $instructions
       category: $category
       username: $username
+      imageUrl: $imageUrl
     ) {
       ...CompleteCourse
     }

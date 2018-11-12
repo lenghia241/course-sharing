@@ -10,7 +10,8 @@ const initialState = {
   category: "Front-End",
   description: "",
   instructions: "",
-  username: ""
+  username: "",
+  imageUrl: ""
 };
 
 export class AddCourse extends Component {
@@ -31,8 +32,9 @@ export class AddCourse extends Component {
   }
 
   validateForm = () => {
-    const { name, category, description, instructions } = this.state;
-    const isValid = !name || !category || !description || !instructions;
+    const { name, category, description, instructions, imageUrl } = this.state;
+    const isValid =
+      !name || !category || !description || !instructions || !imageUrl;
     return isValid;
   };
 
@@ -58,11 +60,25 @@ export class AddCourse extends Component {
   };
 
   render() {
-    const { name, category, description, instructions, username } = this.state;
+    const {
+      name,
+      category,
+      description,
+      instructions,
+      username,
+      imageUrl
+    } = this.state;
     return (
       <Mutation
         mutation={ADD_COURSE}
-        variables={{ name, category, description, instructions, username }}
+        variables={{
+          name,
+          category,
+          description,
+          instructions,
+          username,
+          imageUrl
+        }}
         update={this.updateCache}
         refetchQueries={() => [
           {
@@ -81,10 +97,22 @@ export class AddCourse extends Component {
                   <input
                     type="text"
                     className="form-control"
-                    id="name"
+                    id="username"
                     placeholder="Enter course name"
                     name="name"
                     value={name}
+                    onChange={this.onInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="imageUrl">Course Image</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="imageUrl"
+                    placeholder="Input course image link"
+                    name="imageUrl"
+                    value={imageUrl}
                     onChange={this.onInputChange}
                   />
                 </div>
@@ -134,7 +162,7 @@ export class AddCourse extends Component {
                   type="submit"
                   className="btn btn-outline-primary"
                 >
-                  Sign in
+                  Submit
                 </button>
                 {error && <Error error={error} />}
               </form>

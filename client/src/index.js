@@ -44,7 +44,6 @@ const client = new ApolloClient({
 const Root = ({ refetch, session }) => (
   <Fragment>
     <NavBar session={session} />
-    <br />
     <Switch>
       <Route path="/" exact component={App} />
       <Route path="/signin" render={() => <Signin refetch={refetch} />} />

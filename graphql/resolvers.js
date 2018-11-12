@@ -60,11 +60,12 @@ exports.resolvers = {
   Mutation: {
     addCourse: async (
       roots,
-      { name, description, category, instructions, username },
+      { name, description, category, instructions, username, imageUrl },
       { Course }
     ) => {
       const newCourse = await new Course({
         name,
+        imageUrl,
         description,
         category,
         instructions,

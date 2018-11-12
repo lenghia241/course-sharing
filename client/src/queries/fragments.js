@@ -5,6 +5,7 @@ export const courseFragment = {
     fragment CompleteCourse on Course {
       _id
       name
+      imageUrl
       category
       description
       instructions

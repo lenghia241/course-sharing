@@ -4,6 +4,7 @@ type Course {
     _id: ID
     name: String!
     category: String!
+    imageUrl: String!
     description: String!
     instructions: String!
     createdDate: String
@@ -38,6 +39,7 @@ type Mutation {
         description: String!,
         instructions: String!
         category: String!
+        imageUrl: String!
         username: String
         ): Course,
     signupUser(
