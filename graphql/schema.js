@@ -55,7 +55,11 @@ type Mutation {
     likeCourse(
        _id: ID!, 
        username: String!
-        ): Course
+        ): Course,
+    unlikeCourse(
+       _id: ID!, 
+       username: String!
+        ): Course,
     },
    
 `;

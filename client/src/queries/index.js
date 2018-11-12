@@ -1,4 +1,5 @@
 import { gql } from "apollo-boost";
+import { courseFragment } from "./fragments";
 
 // Course Query
 export const GET_ALL_COURSES = gql`
@@ -18,16 +19,10 @@ export const GET_ALL_COURSES = gql`
 export const GET_COURSE = gql`
   query($_id: ID!) {
     getCourse(_id: $_id) {
-      _id
-      name
-      category
-      description
-      instructions
-      createdDate
-      likes
-      username
+      ...CompleteCourse
     }
   }
+  ${courseFragment.course}
 `;
 
 export const SEARCH_COURSES = gql`
@@ -57,15 +52,10 @@ export const ADD_COURSE = gql`
       category: $category
       username: $username
     ) {
-      _id
-      name
-      category
-      description
-      instructions
-      createdDate
-      likes
+      ...CompleteCourse
     }
   }
+  ${courseFragment.course}
 `;
 
 export const DELETE_USER_COURSE = gql`
@@ -79,10 +69,19 @@ export const DELETE_USER_COURSE = gql`
 export const LIKE_COURSE = gql`
   mutation($_id: ID!, $username: String!) {
     likeCourse(_id: $_id, username: $username) {
-      _id
-      likes
+      ...LikeCourse
     }
   }
+  ${courseFragment.like}
+`;
+
+export const UNLIKE_COURSE = gql`
+  mutation($_id: ID!, $username: String!) {
+    unlikeCourse(_id: $_id, username: $username) {
+      LikeCourse
+    }
+  }
+  ${courseFragment.like}
 `;
 
 // User queries

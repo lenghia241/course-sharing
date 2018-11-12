@@ -114,6 +114,21 @@ exports.resolvers = {
         }
       );
       return course;
+    },
+    unlikeCourse: async (root, { _id, username }, { Course, User }) => {
+      const course = await Course.findOneAndUpdate(
+        { _id },
+        { $inc: { likes: -1 } }
+      );
+      const user = await User.findOneAndUpdate(
+        { username },
+        {
+          $pull: {
+            favourites: _id
+          }
+        }
+      );
+      return course;
     }
   }
 };
