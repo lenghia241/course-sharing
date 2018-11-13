@@ -20,12 +20,30 @@ function Profile({ session: { getCurrentUser } }) {
       <p>Username: {getCurrentUser.username}</p>
       <p>Join Date: {formatDate(getCurrentUser.joinDate)}</p>
       <h3>Saved Course</h3>
-      <ul>
-        {getCurrentUser.favourites.map(item => (
-          <Link to={`/course/${item._id}`} key={item._id}>
-            <li>{item.name}</li>
-          </Link>
-        ))}
+      <ul className="list-unstyled">
+        {getCurrentUser.favourites.map(item => {
+          console.log(item);
+          return (
+            <Link to={`/course/${item._id}`} key={item._id}>
+              <li className="media mb-5 border-bottom">
+                <img
+                  className="mr-3"
+                  src={item.imageUrl}
+                  style={{ width: "10rem" }}
+                  alt="Saved Course"
+                />
+                <div className="media-body">
+                  <Link to={`/course/${item._id}`}>
+                    <h5 className="mt-0 mb-1">{item.name}</h5>
+                  </Link>
+                  <p>
+                    <span className="badge badge-primary">{item.category}</span>
+                  </p>
+                </div>
+              </li>
+            </Link>
+          );
+        })}
         {!getCurrentUser.favourites.length && <p>You have no saved course</p>}
       </ul>
       <h3>User's courses</h3>

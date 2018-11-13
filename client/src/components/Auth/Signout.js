@@ -13,12 +13,14 @@ function Signout({ history }) {
     <ApolloConsumer>
       {client => {
         return (
-          <button
-            className="nav-link btn-outline-secondary btn pull-right"
-            onClick={() => handleSignout(client, history)}
-          >
-            Log out
-          </button>
+          <li className="nav-item">
+            <button
+              className="nav-link btn btn-raised btn-secondary"
+              onClick={() => handleSignout(client, history)}
+            >
+              Log out
+            </button>
+          </li>
         );
       }}
     </ApolloConsumer>

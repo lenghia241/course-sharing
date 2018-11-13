@@ -99,6 +99,8 @@ export const GET_CURRENT_USER = gql`
       favourites {
         _id
         name
+        category
+        imageUrl
       }
     }
   }
@@ -110,6 +112,8 @@ export const GET_USER_COURSES = gql`
       _id
       name
       likes
+      category
+      imageUrl
     }
   }
 `;
