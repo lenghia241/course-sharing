@@ -25,12 +25,17 @@ function CoursePage({ match }) {
             <div className="card">
               <img className="card-img-top" src={imageUrl} alt="Course" />
               <div className="card-body">
-                <h5 className="card-title">{name}</h5>
-                <p className="card-text">Category: {category}</p>
-                <p className="card-text">Description: {description}</p>
-                <p className="card-text">Instructor: {instructions}</p>
-                <p className="card-text">Likes: {likes}</p>
+                <h2 className="text-center">{name}</h2>
+                <h4>Category</h4>
+                <span className="badge badge-primary">{category}</span>
+                <h4>Description</h4>
+                <span className="card-text">{description}</span>
+                <h4>Instructor</h4>
+                <p className="card-text">{instructions}</p>
+                <h4>Shared by</h4>
                 <p className="card-text">Shared by: {username}</p>
+                <br />
+                <p className="card-text">Likes: {likes}</p>
                 <LikeCourse _id={_id} />
               </div>
             </div>

@@ -83,7 +83,7 @@ export const LIKE_COURSE = gql`
 export const UNLIKE_COURSE = gql`
   mutation($_id: ID!, $username: String!) {
     unlikeCourse(_id: $_id, username: $username) {
-      LikeCourse
+      ...LikeCourse
     }
   }
   ${courseFragment.like}

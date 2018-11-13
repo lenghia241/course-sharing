@@ -16,9 +16,30 @@ function Profile({ session: { getCurrentUser } }) {
         Welcome, <strong>{getCurrentUser.username}</strong>
       </h3>
       <h3>User profile</h3>
-      <p>Email: {getCurrentUser.email}</p>
-      <p>Username: {getCurrentUser.username}</p>
-      <p>Join Date: {formatDate(getCurrentUser.joinDate)}</p>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Info</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Email</td>
+            <td>{getCurrentUser.email}</td>
+          </tr>
+          <tr>
+            <td>Username</td>
+            <td>{getCurrentUser.username}</td>
+          </tr>
+          <tr>
+            <td>Register Date</td>
+            <td>{formatDate(getCurrentUser.joinDate)}</td>
+          </tr>
+        </tbody>
+      </table>
+
       <h3>Saved Course</h3>
       <ul className="list-unstyled">
         {getCurrentUser.favourites.map(item => {

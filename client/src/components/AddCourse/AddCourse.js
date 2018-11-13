@@ -90,14 +90,14 @@ export class AddCourse extends Component {
         {(addCourse, { data, loading, error }) => {
           return (
             <div className="container">
-              <h1>Add Course</h1>
+              <h2 className="text-center">Add Course</h2>
               <form onSubmit={e => this.onFormSubmit(e, addCourse)}>
                 <div className="form-group">
-                  <label htmlFor="username">Course name</label>
+                  <label htmlFor="coursename">Course name</label>
                   <input
                     type="text"
                     className="form-control"
-                    id="username"
+                    id="coursename"
                     placeholder="Enter course name"
                     name="name"
                     value={name}
@@ -128,16 +128,16 @@ export class AddCourse extends Component {
                     value={category}
                     onChange={this.onInputChange}
                   >
-                    <option value="Front-End">Front end</option>
-                    <option value="Back-End">Back end</option>
-                    <option value="Full-Stack">Full stack</option>
+                    <option value="Front-End">Front-End</option>
+                    <option value="Back-End">Back-End</option>
+                    <option value="Full-Stack">Full-Stack</option>
                   </select>
                 </div>
                 <div className="form-group">
                   <label htmlFor="description">Description</label>
-                  <input
-                    type="text"
+                  <textarea
                     className="form-control"
+                    rows="5"
                     id="description"
                     placeholder="Enter description"
                     name="description"
