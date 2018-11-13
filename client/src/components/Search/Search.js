@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { ApolloConsumer } from "react-apollo";
 import { Link } from "react-router-dom";
 import { SEARCH_COURSES } from "../../queries";
+import classNames from "classnames";
 
 export class Search extends Component {
   state = {
@@ -63,7 +64,14 @@ export class Search extends Component {
                         {item.likes}
                       </p>
                       <p>
-                        <span className="badge badge-primary">
+                        <span
+                          className={classNames(
+                            "badge mb-3",
+                            { "badge-primary": item.category === "Front-End" },
+                            { "badge-secondary": item.category === "Back-End" },
+                            { "badge-info": item.category === "Full-Stack" }
+                          )}
+                        >
                           {item.category}
                         </span>
                       </p>

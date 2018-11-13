@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import UserCourses from "./UserCourses";
 import withAuth from "../withAuth";
+import classNames from "classnames";
 
 function Profile({ session: { getCurrentUser } }) {
   const formatDate = date => {
@@ -12,12 +13,10 @@ function Profile({ session: { getCurrentUser } }) {
 
   return (
     <div className="container">
-      <h3>
-        Welcome, <strong>{getCurrentUser.username}</strong>
-      </h3>
+      <h5 className="text-center">Hi, {getCurrentUser.username}</h5>
       <h3>User profile</h3>
 
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -43,7 +42,6 @@ function Profile({ session: { getCurrentUser } }) {
       <h3>Saved Course</h3>
       <ul className="list-unstyled">
         {getCurrentUser.favourites.map(item => {
-          console.log(item);
           return (
             <Link to={`/course/${item._id}`} key={item._id}>
               <li className="media mb-5 border-bottom">
@@ -54,11 +52,18 @@ function Profile({ session: { getCurrentUser } }) {
                   alt="Saved Course"
                 />
                 <div className="media-body">
-                  <Link to={`/course/${item._id}`}>
-                    <h5 className="mt-0 mb-1">{item.name}</h5>
-                  </Link>
+                  <h5 className="mt-0 mb-1">{item.name}</h5>
                   <p>
-                    <span className="badge badge-primary">{item.category}</span>
+                    <span
+                      className={classNames(
+                        "badge",
+                        { "badge-primary": item.category === "Front-End" },
+                        { "badge-secondary": item.category === "Back-End" },
+                        { "badge-info": item.category === "Full-Stack" }
+                      )}
+                    >
+                      {item.category}
+                    </span>
                   </p>
                 </div>
               </li>

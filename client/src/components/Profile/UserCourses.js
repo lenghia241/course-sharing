@@ -7,6 +7,7 @@ import {
   GET_CURRENT_USER
 } from "../../queries";
 import { Link } from "react-router-dom";
+import classNames from "classnames";
 
 const handleDelete = deleteUserCourse => {
   const confirmDelete = window.confirm(
@@ -46,7 +47,14 @@ function UserCourses({ getCurrentUser: { username } }) {
                       {item.likes}
                     </p>
                     <p>
-                      <span className="badge badge-primary">
+                      <span
+                        className={classNames(
+                          "badge",
+                          { "badge-primary": item.category === "Front-End" },
+                          { "badge-secondary": item.category === "Back-End" },
+                          { "badge-info": item.category === "Full-Stack" }
+                        )}
+                      >
                         {item.category}
                       </span>
                     </p>
