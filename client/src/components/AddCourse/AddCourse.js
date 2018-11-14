@@ -4,6 +4,7 @@ import { Mutation } from "react-apollo";
 import { ADD_COURSE, GET_ALL_COURSES, GET_USER_COURSES } from "../../queries";
 import Error from "../Error";
 import withAuth from "../withAuth";
+import CKEditor from "react-ckeditor-component";
 
 const initialState = {
   name: "",
@@ -57,6 +58,11 @@ export class AddCourse extends Component {
         getAllCourses: [addCourse, ...getAllCourses]
       }
     });
+  };
+
+  handleDescriptionChange = e => {
+    const newContent = e.editor.getData();
+    this.setState({ description: newContent });
   };
 
   render() {
@@ -135,7 +141,12 @@ export class AddCourse extends Component {
                 </div>
                 <div className="form-group">
                   <label htmlFor="description">Description</label>
-                  <textarea
+                  <CKEditor
+                    name="description"
+                    content={description}
+                    events={{ change: this.handleDescriptionChange }}
+                  />
+                  {/*<textarea
                     className="form-control"
                     rows="5"
                     id="description"
@@ -143,7 +154,7 @@ export class AddCourse extends Component {
                     name="description"
                     value={description}
                     onChange={this.onInputChange}
-                  />
+                  />*/}
                 </div>
                 <div className="form-group">
                   <label htmlFor="instructions">Instructor</label>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import CourseItem from "./Courses/CourseItem";
+import { ClipLoader } from "react-spinners";
 
 import { Query } from "react-apollo";
 import { GET_ALL_COURSES } from "../queries/index";
@@ -14,9 +15,8 @@ class App extends Component {
         <h1 className="lead text-center">Available Course</h1>
         <Query query={GET_ALL_COURSES}>
           {({ data, loading, error }) => {
-            console.log(data);
             if (loading) {
-              return <div>Loading</div>;
+              return <ClipLoader size={150} margin={"5px"} color={"#36D7B7"} />;
             }
             if (error) {
               return <div>There is an error</div>;

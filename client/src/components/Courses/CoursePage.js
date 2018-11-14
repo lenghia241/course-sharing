@@ -32,7 +32,7 @@ function CoursePage({ match }) {
                 </h4>
 
                 <h4>Description</h4>
-                <p>{description}</p>
+                <div dangerouslySetInnerHTML={{ __html: description }} />
                 <h4>Instructor</h4>
                 <p>{instructions}</p>
                 <h4>Shared by</h4>
