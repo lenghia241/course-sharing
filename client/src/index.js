@@ -22,7 +22,7 @@ import Profile from "./components/Profile/Profile";
 import CoursePage from "./components/Courses/CoursePage";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4444/graphql",
+  uri: "https://coding-course.herokuapp.com/graphql",
   fetchOptions: {
     credentials: "include"
   },

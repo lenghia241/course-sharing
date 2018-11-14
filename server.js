@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+const path = require("path");
 const { graphiqlExpress, graphqlExpress } = require("apollo-server-express");
 const { makeExecutableSchema } = require("graphql-tools");
 
@@ -43,7 +44,7 @@ const schema = makeExecutableSchema({
 });
 
 // Creat graphiql application
-app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
+// app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
 
 //Connect Schema with Graphql
 app.use(
@@ -65,6 +66,13 @@ mongoose
   .then(() => console.log("DB connected"))
   .catch(err => console.log(err));
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 const PORT = process.env.PORT || 4444;
 
 app.listen(PORT, () => {
